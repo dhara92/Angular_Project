@@ -9,6 +9,7 @@ import { DishdetailComponent } from '../dishdetail/dishdetail.component';
 export const routes: Routes =[
     { path: 'home', component: HomeComponent },
     { path: 'menu', component: MenuComponent },
+    { path: 'dishdetail/:id', component: DishdetailComponent },
     { path: 'about', component: AboutComponent },
     { path: 'contactus', component: ContactComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full'}
