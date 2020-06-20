@@ -7,12 +7,13 @@ $background-moredark: #4527A0;
     margin: 0px auto;
     padding: $pad-up-down $pad-left-right;
 }
-.active {
-    background: $background-moredark;
-}
+
 .jumbotron {
     @include zero-margin(70px,30px);
     background: $background-light ;
     color:floralwhite;
     min-height: 150px;
+}
+.active {
+    background: $background-moredark;
 }
