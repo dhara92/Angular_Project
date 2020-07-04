@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatToolbarModule} from '@angular/material/Toolbar';
-import {FlexLayoutModule} from '@angular/flex-layout';
-import {MatListModule} from '@angular/material/list';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from '@angular/material/Toolbar';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatListModule } from '@angular/material/list';
 import { AppComponent } from './app.component';
 import 'hammerjs';
 import { MenuComponent } from './menu/menu.component';
@@ -29,8 +29,11 @@ import { LoginComponent } from './login/login.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FormsModule } from '@angular/forms'; 
-
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,15 +51,19 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MatToolbarModule,
     FlexLayoutModule,
-    MatListModule,MatGridListModule,
+    MatListModule, MatGridListModule,
     MatCardModule,
     MatButtonModule,
-    AppRoutingModule, 
+    AppRoutingModule,
     MatDialogModule,
-    MatFormFieldModule, 
+    MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    FormsModule 
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     DishService,
@@ -65,7 +72,7 @@ import { FormsModule } from '@angular/forms';
   ],
   entryComponents: [
     LoginComponent
-],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

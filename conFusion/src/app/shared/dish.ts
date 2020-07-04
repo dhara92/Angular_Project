@@ -1,13 +1,13 @@
 import { Comment } from './Comment';
 
-export class Dish{
-    id: string;
+export class Dish {
+    id: number;
     name: string;
     image: string;
     category: string;
     featured: boolean;
     label: string;
-    price: string;  
+    price: string;
     description: string;
     comments: Comment[];
 }
