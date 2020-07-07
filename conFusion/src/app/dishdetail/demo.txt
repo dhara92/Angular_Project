@@ -31,38 +31,13 @@
       <mat-list *ngIf="dish">
 
         <mat-list *ngFor="let c of dish.comments">
-          <h4 matLine>{{c.comment}}</h4>
+          <p matLine>{{c.comment}}</p>
           <p matLine>{{c.rating}}</p>
           <p matLine>-- {{c.author }} {{ c.date | date }}</p>
         </mat-list>
 
-        <mat-list-item *ngIf="commentForm.valid">
-          <p matLine>{{commentForm.value.comment}}</p>
-          <p matLine>{{commentForm.value.rating}} </p>
-          <p matLine>-- {{commentForm.value.name}}</p>
-        </mat-list-item>
-      </mat-list>
 
-      <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
-        <p>
-          <mat-form-field class="half-width">
-            <input matInput formControlName="name" placeholder="Name" type="text" required>
-            <mat-error *ngIf="formErrors.name">{{formErrors.name}}</mat-error>
-          </mat-form-field>
-        </p>
-        <p>
-          <mat-slider formControlName="rating" thumbLabel tickInterval="1" min="1" max="5" value="5">
-          </mat-slider>
-        </p>
-        <p>
-          <mat-form-field class="half-width">
-            <textarea matInput formControlName="comment" placeholder="Comment" type="text" required></textarea>
-            <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
-          </mat-form-field>
-        </p>
-        <button type="submit" mat-button class="background-primary text-floral-white"
-          [disabled]="commentForm.invalid">Submit</button>
-      </form>
+      </mat-list>
     </div>
 
     <div fxFlex [hidden]="dish">
@@ -71,4 +46,29 @@
     </div>
   </div>
 
+  <div fxFlex class="form-size" [@expand] [@visibility]="visibility">
+    <div [hidden]="commentForm.invalid">
+      <p>{{commentForm.value.author}}</p>
+      <p>{{commentForm.value.rating}} Stars</p>
+      <p> -- {{commentForm.value.comment}}</p>
+    </div>
+  </div>
+
+  <div fxFlex fxFlexOffset="20px" class="form-size">
+    <h3>Send us your Feedback</h3>
+    <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
+
+    <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="name" placeholder="Name" type="text" required>
+          <mat-error *ngIf="formErrors.name">{{formErrors.name}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="comment" placeholder="Comment" type="text" required>
+          <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
+        </mat-form-field>
+      </p>
+    </form>
+  </div>
 </div>
