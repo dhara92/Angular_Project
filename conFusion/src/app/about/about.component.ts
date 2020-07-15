@@ -12,7 +12,7 @@ import { flyInOut, expand } from '../animations/app.animation';
   },
   animations: [
     flyInOut(),
-    expand() 
+    expand()
   ]
 })
 export class AboutComponent implements OnInit {
@@ -22,7 +22,7 @@ export class AboutComponent implements OnInit {
   constructor(private leaderService: LeaderService) { }
 
   ngOnInit(): void {
-    this.leaderService.getLeaders().then((leader) => this.leader = leader);
+    this.leaderService.getLeaders().subscribe((leader) => this.leader = leader);
   }
 
 }

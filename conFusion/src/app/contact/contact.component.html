@@ -79,4 +79,20 @@
       <button type="submit" mat-button class="background-primary text-floral-white">Submit</button>
     </form>
   </div>
+  <mat-list *ngIf="feedback">
+    <mat-list-item *ngIf="feedbackForm.valid">
+      <p matLine>First Name : {{feedbackCopy.value.firstname}}</p>
+      <p matLine>First Name : {{feedbackForm.value.lastname}} </p>
+      <p matLine>Tel Number : {{feedbackForm.value.telnum}}</p>
+    </mat-list-item>
+  </mat-list>
+
+  <div fxFlex [hidden]="feedback || feedbackErrMess">
+    <mat-spinner></mat-spinner>
+    <h4>Loading . . . Please Wait</h4>
+  </div>
+  <div fxFlex *ngIf="feedbackErrMess">
+    <h2>Error</h2>
+    <h4>{{feedbackErrMess}}</h4>
+  </div>
 </div>

@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
 import { flyInOut } from '../animations/app.animation';
-
+import { FeedbackService } from '../services/feedback.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -19,7 +20,11 @@ export class ContactComponent implements OnInit {
 
   feedbackForm: FormGroup;
   feedback: Feedback;
+  feedbackCopy: Feedback;
+  feedbackErrMess: string;
+  // fds: FeedbackService;
   contactType = ContactType;
+
   @ViewChild('fform') feedbackFormDirective;
 
   formErrors = {
@@ -50,7 +55,7 @@ export class ContactComponent implements OnInit {
     },
   };
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private feedbackService: FeedbackService) {
     this.createForm();
   }
 
@@ -73,7 +78,17 @@ export class ContactComponent implements OnInit {
 
   onSubmit() {
     this.feedback = this.feedbackForm.value;
-    console.log(this.feedback);
+
+    this.feedbackService.submitFeedback(this.feedback)
+      .subscribe(feedback => {
+        this.feedback = feedback
+      },
+        errmess => {
+          this.feedback = null; this.feedbackCopy = null;
+          feedbackErrMess => this.feedbackErrMess = <any>feedbackErrMess;
+        });
+
+
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',
@@ -84,7 +99,7 @@ export class ContactComponent implements OnInit {
       message: ''
     });
 
-    this.feedbackFormDirective.resetForm();
+    // this.feedbackFormDirective.resetForm();
   }
 
   onValueChanged(data?: any) {
@@ -93,7 +108,7 @@ export class ContactComponent implements OnInit {
     for (const field in this.formErrors) {
       if (this.formErrors.hasOwnProperty(field)) {
         // clear previous error message (if any)
-        this.formErrors[field] = '';
+        this.formErrors[field] = ' ';
         const control = form.get(field);
         if (control && control.dirty && !control.valid) {
           const messages = this.validationMessages[field];
